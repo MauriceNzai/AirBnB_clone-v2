@@ -127,19 +127,19 @@ class HBNBCommand(cmd.Cmd):
                 raise SyntaxError()
             my_list = args.split(" ")
             obj = eval("{}()".format(my_list[0]))
-            print("{}".format(obj.id))
-            for num in range(1, len(my_list)):
-                my_list[num] = my_list[num].replace('=', ' ')
-                attributes = split(my_list[num])
-                attributes[1] = attributes[1].replace('_', ' ')
+            params = my_list[1:]
+            for param in params:
+                k, v = param.split('=')
                 try:
-                    var = eval(attributes[1])
-                    attributes[1] = var
+                    attribute = HBNBCommand.verify_attribute(v)
                 except:
-                    pass
-                if type(attributes[1]) is not tuple:
-                    setattr(obj, attributes[0], attributes[1])
+                    continue
+                if not attribute:
+                    continue
+                setattr(obj, k, attribute)
             obj.save()
+            print (obj.id)
+
         except SyntaxError:
             print("** class name missing **")
         except NameError:
@@ -342,6 +342,22 @@ class HBNBCommand(cmd.Cmd):
         """ Help information for the update class """
         print("Updates an object with new information")
         print("Usage: update <className> <id> <attName> <attVal>\n")
+
+    @classmethod
+    def verify_attribute(cls, attribute):
+        """
+        Verify if the attribute is correctly formated
+        """
+        if attribute[0] is attribute[-1] in ['"', "'"]:
+            return attribute.strip('"\'').replace('_', ' ').replace('\\','"')
+        else:
+            try:
+                try:
+                    return int(attribute)
+                except ValueError:
+                    return float(attribute)
+            except ValueError:
+                return None
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
