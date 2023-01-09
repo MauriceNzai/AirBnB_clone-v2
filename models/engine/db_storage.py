@@ -3,7 +3,6 @@
 Defines the engine for MSQL database storage
 """
 
-
 from models.base_model import BaseModel, Base
 from models.user import User
 from models.state import State
@@ -85,7 +84,7 @@ class DBStorage:
         session_factory = sessionmaker(bind=self.__engine,
                 expire_on_commit=False)
         Session = scoped_session(session_factory)
-        self.__session = Session()
+        DBStorage.__session = Session()
 
     def close(self):
         """
