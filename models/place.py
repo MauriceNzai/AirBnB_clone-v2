@@ -5,13 +5,12 @@ from sqlalchemy import Column, String, Integer, ForeignKey, Float, Table
 from sqlalchemy.orm import relationship
 
 
-place_amenity = Table('place_amenity', Base.metadata,
-                        Column('place_id', String(60), ForeignKey('places.id'),
-                                primary_key=True, nullable=False),
-                        Column('amenity_id', String(60),
-                                ForeignKey('amenities.id'), primary_key=True,
-                                nullable=False)
-                        )
+place_amenity = Table(
+        'place_amenity', Base.metadata, Column(
+            'place_id', String(60), ForeignKey(
+                'places.id'), primary_key=True, nullable=False), Column(
+                    'amenity_id', String(60), ForeignKey(
+                        'amenities.id'), primary_key=True, nullable=False))
 
 
 class Place(BaseModel, Base):
@@ -27,10 +26,10 @@ class Place(BaseModel, Base):
     price_by_night = Column(Integer, nullable=False, default=0)
     latitude = Column(Float)
     longitude = Column(Float)
-    
+
     reviews = relationship("Review", backref='place', cascade="all, delete")
-    amenities = relationship("Amenity",
-                                secondary=place_amenity, viewonly=False)
+    amenities = relationship(
+            "Amenity", secondary=place_amenity, viewonly=False)
 
     @property
     def reviews(self):
@@ -62,7 +61,7 @@ class Place(BaseModel, Base):
     @amenities.setter
     def amenities(self, obj):
         """
-        Setter to handle append method for adding an amenity.id to the attribute amenity_ids
+        Handle append method for adding amenity.id to the attribute amenity_ids
         """
         if isinstance(obj, 'Amenity'):
             self.amenity_id.append(obj.id)
