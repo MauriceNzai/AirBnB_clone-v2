@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # AirBnB clone - MySQL
 
 > This directory contains all the tasks of the project "0x02. AirBnB clone - MySQL" at ALX
@@ -69,13 +68,13 @@ Using a MySQL storage we replace the file storage (JSON file) by a Database stor
 
 ## Prerequisites
 
-This program was made and tested using Ubuntu 14.04.3 LTS and Python 3.4.3 So we recommend you to test this command interpreter under this conditions.
+This program was made and tested using Ubuntu 20.04 LTS and Python 3.8.5 So we recommend you to test this command interpreter under this conditions.
 
 ## Built With
 
-* Ubuntu 20.04.3 LTS Running on a Virtual Machine "Vagrant"
-* GNU Vim 24.3.1
-* Python 3.8.3
+* Ubuntu 20.04 LTS Running on a Virtual Machine "Vagrant"
+* VIM 8.1.3741
+* Python 3.8.5
 
 ## AUTHORS
 
@@ -94,7 +93,3 @@ Opensource project.
 ## Acknowledgments
 
 * Project made at ALX
-=======
-python
-# alx-higher_level_programming
->>>>>>> fd628444b36846e913edadf3354500848c738bdb
