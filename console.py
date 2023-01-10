@@ -73,7 +73,7 @@ class HBNBCommand(cmd.Cmd):
                 pline = pline[2].strip()  # pline is now str
                 if pline:
                     # check for *args or **kwargs
-                    if pline[0] == '{' and pline[-1] =='}'\
+                    if pline[0] == '{' and pline[-1] == '}'\
                             and type(eval(pline)) is dict:
                         _args = pline
                     else:
@@ -131,13 +131,13 @@ class HBNBCommand(cmd.Cmd):
                 k, v = param.split('=')
                 try:
                     attribute = HBNBCommand.verify_attribute(v)
-                except:
+                except SyntaxError:
                     continue
                 if not attribute:
                     continue
                 setattr(obj, k, attribute)
             obj.save()
-            print (obj.id)
+            print(obj.id)
 
         except SyntaxError:
             print("** class name missing **")
@@ -162,7 +162,7 @@ class HBNBCommand(cmd.Cmd):
         c_name = new[0]
         c_id = new[2]
 
-        #guard against trailing args
+        # guard against trailing args
         if c_id and ' ' in c_id:
             c_id = c_id.partition(' ')[0]
 
@@ -213,7 +213,7 @@ class HBNBCommand(cmd.Cmd):
         key = c_name + "." + c_id
 
         try:
-            del(storage.all()[key])
+            del (storage.all()[key])
             storage.save()
         except KeyError:
             print("** no instance found **")
@@ -228,7 +228,7 @@ class HBNBCommand(cmd.Cmd):
         obj = storage.all()
         print_list = []
         if args:
-            args = args.split(' ')[0]   #remove possible trailing args
+            args = args.split(' ')[0]   # remove possible trailing args
             if args not in HBNBCommand.classes:
                 print("** class doesn't exist **")
                 return
@@ -351,7 +351,7 @@ class HBNBCommand(cmd.Cmd):
         Verify if the attribute is correctly formated
         """
         if attribute[0] is attribute[-1] in ['"', "'"]:
-            return attribute.strip('"\'').replace('_', ' ').replace('\\','"')
+            return attribute.strip('"\'').replace('_', ' ').replace('\\', '"')
         else:
             try:
                 try:
@@ -360,6 +360,7 @@ class HBNBCommand(cmd.Cmd):
                     return float(attribute)
             except ValueError:
                 return None
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
