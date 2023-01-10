@@ -12,7 +12,7 @@ from models.amenity import Amenity
 from models.review import Review
 from sqlalchemy import (create_engine)
 from sqlalchemy.orm import sessionmaker, scoped_session
-import os 
+import os
 
 
 user = os.getenv('HBNB_MYSQL_USER')
@@ -81,8 +81,8 @@ class DBStorage:
         Creates the current database session
         """
         Base.metadata.create_all(self.__engine)
-        session_factory = sessionmaker(bind=self.__engine,
-                expire_on_commit=False)
+        session_factory = sessionmaker(
+                bind=self.__engine, expire_on_commit=False)
         Session = scoped_session(session_factory)
         DBStorage.__session = Session()
 
