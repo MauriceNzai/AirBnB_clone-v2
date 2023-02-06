@@ -28,7 +28,7 @@ def dynamic_text(text=None):
     """
     return ("C {}".format(text.replace('_', ' ')))
 
-@app.route('/python/', strict_slashes=False)
+@app.route('/python', strict_slashes=False)
 @app.route('/python/<string:text>', strict_slashes=False)
 def python_text(text='is_cool'):
     """
@@ -44,7 +44,7 @@ def dynamic_digits(n=None):
     return ("{} is a number".format(n))
 
 
-@app.route('number_template/<int:n>' strict_slashes=False)
+@app.route('/number_template/<int:n>', strict_slashes=False)
 def number_template(n=None):
     """
     Display a HTML page only if input number, n is an integer
