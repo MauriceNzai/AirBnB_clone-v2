@@ -14,12 +14,14 @@ def hello():
     """
     return ("Hello HBNB!")
 
+
 @app.route('/hbnb', strict_slashes=False)
 def hbnb():
     """
     Adds the route /hbnb
     """
     return ("HBNB")
+
 
 @app.route('/c/<string:text>', strict_slashes=False)
 def dynamic_text(text=None):
@@ -28,6 +30,7 @@ def dynamic_text(text=None):
     """
     return ("C {}".format(text.replace('_', ' ')))
 
+
 @app.route('/python', strict_slashes=False)
 @app.route('/python/<string:text>', strict_slashes=False)
 def python_text(text='is cool'):
@@ -35,6 +38,7 @@ def python_text(text='is cool'):
     Display dynamic text, and replace underscore for space
     """
     return ("Python {}".format(text.replace('_', ' ')))
+
 
 @app.route('/number/<int:n>', strict_slashes=False)
 def only_digits_dynamic(n=None):
