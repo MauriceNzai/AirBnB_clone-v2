@@ -28,7 +28,7 @@ def dynamic_text(text=None):
     """
     return ("C {}".format(text.replace('_', ' ')))
 
-@app.route('/python/', strict_slashes=False)
+@app.route('/python', strict_slashes=False)
 @app.route('/python/<string:text>', strict_slashes=False)
 def python_text(text='is_cool'):
     """
@@ -52,5 +52,5 @@ def number_template(n=None):
     return (render_template('5-number.html', n=n))
 
 
-if __name__== '__main__':
+if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
