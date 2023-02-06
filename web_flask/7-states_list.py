@@ -6,6 +6,7 @@ Starts a Flask web apllication for the HBNB project
 from models import storage
 from models.state import State
 from flask import Flask, render_template
+
 app = Flask(__name__)
 
 
@@ -17,12 +18,12 @@ def appcontext_teardown(self):
     storage.close()
 
 
-@app.route('/state_list', strict_slashes=False)
+@app.route('/states_list', strict_slashes=False)
 def state_information():
     """
     Display a HTML page inside tag BODY
     """
-    return render_template('7-states_list.html', states=storage.all(State))
+    return (render_template('7-states_list.html', states=storage.all(State)))
 
 
 if __name__ == '__main__':
