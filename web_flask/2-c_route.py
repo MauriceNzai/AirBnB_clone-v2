@@ -21,8 +21,8 @@ def hbnb():
     """
     return ("HBNB")
 
-@app.rout('/c/<string:text>', strict_slashes=False)
-def text(text=None):
+@app.route('/c/<string:text>', strict_slashes=False)
+def dynamic_text(text=None):
     """
     Display dynamic text input, and replacing undescore for space
     """
