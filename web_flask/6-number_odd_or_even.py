@@ -49,7 +49,7 @@ def dynamic_digits(n=None):
 
 
 @app.route('/number_template/<int:n>', strict_slashes=False)
-def number_template(n=None):
+def first_template(n=None):
     """
     Display a HTML page only if input number, n is an integer
     """
