@@ -19,7 +19,7 @@ def appcontext_teardown(self):
     storage.close()
 
 
-@app.route('/states', strict_slaashes=False)
+@app.route('/states', strict_slashes=False)
 def state_information():
     """
     Displays a HTML page inside the BODY tag
