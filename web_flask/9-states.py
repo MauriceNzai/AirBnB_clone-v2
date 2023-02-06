@@ -27,7 +27,7 @@ def state_information():
     return (render_template('7-states_list.html', states=storage.all(State)))
 
 
-@qpp.route('/states/<string:id>', strict_slashes=False)
+@app.route('/states/<string:id>', strict_slashes=False)
 def state_id(id=None):
     """
     Displays a HTML page inside the BODY tag
