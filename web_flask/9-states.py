@@ -11,8 +11,8 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 
-@app.teadown_appcontext
-def appcontext_teadown(self):
+@app.teardown_appcontext
+def appcontext_teardown(self):
     """
     Calls storage for fetching data from the storage engine
     """
