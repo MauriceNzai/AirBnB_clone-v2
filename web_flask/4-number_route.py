@@ -30,14 +30,14 @@ def dynamic_text(text=None):
 
 @app.route('/python', strict_slashes=False)
 @app.route('/python/<string:text>', strict_slashes=False)
-def python_text(text='is_cool'):
+def python_text(text='is cool'):
     """
     Display dynamic text, and replace underscore for space
     """
     return ("Python {}".format(text.replace('_', ' ')))
 
 @app.route('/number/<int:n>', strict_slashes=False)
-def dynamic_digits(n=None):
+def only_digits_dynamic(n=None):
     """
     Display dynamically input number, dont accept none-number
     """
