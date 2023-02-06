@@ -14,6 +14,7 @@ def hello():
     """
     return ("Hello HBNB!")
 
+
 @app.route('/hbnb', strict_slashes=False)
 def hbnb():
     """
@@ -21,12 +22,14 @@ def hbnb():
     """
     return ("HBNB")
 
+
 @app.route('/c/<string:text>', strict_slashes=False)
 def dynamic_text(text=None):
     """
     Display dynamic text input, and replacing undescore for space
     """
     return ("C {}".format(text.replace('_', ' ')))
+
 
 @app.route('/python/', strict_slashes=False)
 @app.route('/python/<string:text>', strict_slashes=False)
