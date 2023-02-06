@@ -14,12 +14,14 @@ def hello():
     """
     return ("Hello HBNB!")
 
+
 @app.route('/hbnb', strict_slashes=False)
 def hbnb():
     """
     Adds the route /hbnb
     """
     return ("HBNB")
+
 
 @app.route('/c/<string:text>', strict_slashes=False)
 def dynamic_text(text=None):
