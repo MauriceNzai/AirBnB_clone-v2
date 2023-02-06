@@ -32,8 +32,8 @@ def state_id(id=None):
     """
     Displays a HTML page inside the BODY tag
     """
-    return (render_template('9-states.html', states=storage.all(State).get(
-        'State.{}'.format(id))))
+    return (render_template('9-states.html',
+            states=storage.all(State).get('State.{}'.format(id))))
 
 
     if __name__ == '__main__':
