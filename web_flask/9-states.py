@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Starts a Flask web application for the AirBnB project
+Starts a Flask web application 
 """
 
 
@@ -21,22 +21,23 @@ def appcontext_teardown(exc):
 
 
 @app.route('/states', strict_slashes=False)
-def state_information():
+@app.route('/states/<id>', strict_slashes=False)
+def state_city_info():
     """
     Displays a HTML page inside the BODY tag
     """
-    return (render_template('9-states.html', states=storage.all(State)))
+    states = storage.all(State)
 
-
-@app.route('/states/<string:id>', strict_slashes=False)
-def state_id(id=None):
-    """
-    Displays a HTML page inside the BODY tag
-    """
-    for state in storage.all('State').values():
-        if state.id == id:
-            return (render_template('9-states.html', state = state))
-        return (render_template('9-states.html'))
+    if not id:
+        html_dict = {value.id: value.name for value in states.values()}
+        return (render_template(
+            '7-states_list.html', Table='States', items=html_dict))
+    key = 'State.{}'.format(id)
+    if key in states:
+        return (render_template(
+            '9-states.html', Table='State: {}'.format(
+                states[key].name),items=states[key]))
+    return (render_template('9-states.html', items=None))        
 
     if __name__ == '__main__':
         app.run(host='0.0.0.0', port=5000)
