@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Starts a Flask web application for task 9 
+Starts a Flask web application for task 9
 """
 
 
@@ -34,7 +34,7 @@ def state_id(id=None):
     Displays a HTML page inside the BODY tag
     """
     return (render_template('9-states.html', states=storage.all(State).get(
-            'State.{}'.format(id))))        
+            'State.{}'.format(id))))
 
     if __name__ == '__main__':
         app.run(host='0.0.0.0', port=5000)
