@@ -21,23 +21,20 @@ def appcontext_teardown(exc):
 
 
 @app.route('/states', strict_slashes=False)
+def state_info():
+    """
+    Display HTML Page inside Body tag
+    """
+    return (render_template('7-states_list.html', states=storage.all(State)))
+
+
 @app.route('/states/<id>', strict_slashes=False)
-def state_city_info():
+def state_id(id=None):
     """
     Displays a HTML page inside the BODY tag
     """
-    states = storage.all(State)
-
-    if not id:
-        html_dict = {value.id: value.name for value in states.values()}
-        return (render_template(
-            '7-states_list.html', Table='States', items=html_dict))
-    key = 'State.{}'.format(id)
-    if key in states:
-        return (render_template(
-            '9-states.html', Table='State: {}'.format(
-                states[key].name),items=states[key]))
-    return (render_template('9-states.html', items=None))        
+    return (render_template('9-states.html', states=storage.all(State).get(
+            'State.{}'.format(id))))        
 
     if __name__ == '__main__':
         app.run(host='0.0.0.0', port=5000)

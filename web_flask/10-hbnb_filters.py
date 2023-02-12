@@ -8,7 +8,7 @@ from models.state import State
 from models.amenity import Amenity
 from flask import Flask, render_template
 
-app = Falsk(__name__)
+app = Flask(__name__)
 
 @app.teardown_appcontext
 def appcontext_teardown(self):
