@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
 Starts a Flask web application for task 9
+and checks the status of the app
 """
 
 
