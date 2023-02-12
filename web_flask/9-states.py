@@ -3,18 +3,15 @@
 Starts a Flask web application for task 9
 and checks the status of the app
 """
-
-
 from models import storage
 from models.state import State
 from models.city import City
 from flask import Flask, render_template
-
 app = Flask(__name__)
 
 
 @app.teardown_appcontext
-def appcontext_teardown(exc):
+def appcontext_teardown(self):
     """
     Removes current SQLAlchemy session
     """
@@ -29,7 +26,7 @@ def state_info():
     return (render_template('7-states_list.html', states=storage.all(State)))
 
 
-@app.route('/states/<id>', strict_slashes=False)
+@app.route('/states/<string:id>', strict_slashes=False)
 def state_id(id=None):
     """
     Displays a HTML page inside the BODY tag
