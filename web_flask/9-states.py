@@ -1,38 +1,28 @@
 #!/usr/bin/python3
 """
-Starts a Flask web application for task 9
-and checks the status of the app
+starts a Flask web application
 """
-from models import storage
-from models.state import State
-from models.city import City
+
 from flask import Flask, render_template
+from models import *
+from models import storage
 app = Flask(__name__)
 
 
+@app.route('/states', strict_slashes=False)
+@app.route('/states/<state_id>', strict_slashes=False)
+def states(state_id=None):
+    """display the states and cities listed in alphabetical order"""
+    states = storage.all("State")
+    if state_id is not None:
+        state_id = 'State.' + state_id
+    return render_template('9-states.html', states=states, state_id=state_id)
+
+
 @app.teardown_appcontext
-def appcontext_teardown(self):
-    """
-    Removes current SQLAlchemy session
-    """
+def teardown_db(exception):
+    """closes the storage on teardown"""
     storage.close()
 
-
-@app.route('/states', strict_slashes=False)
-def state_info():
-    """
-    Display HTML Page inside Body tag
-    """
-    return (render_template('7-states_list.html', states=storage.all(State)))
-
-
-@app.route('/states/<string:id>', strict_slashes=False)
-def state_id(id=None):
-    """
-    Displays a HTML page inside the BODY tag
-    """
-    return (render_template('9-states.html', states=storage.all(State).get(
-            'State.{}'.format(id))))
-
-    if __name__ == '__main__':
-        app.run(host='0.0.0.0', port=5000)
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='5000')

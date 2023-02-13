@@ -1,19 +1,27 @@
 <!DOCTYPE html>
-<HTML lang="en">
-    <HEAD>
-        <TITLE>HBNB</TITLE>
-    </HEAD>
-    <BODY>
-        {% if states is none %}
-        <H1>Not found!</H1>
-        {% else %}
-        <H1>State: {{ states.name }}</H1>
-        <H3>Cities:</H3>
-        <UL>
-        {% for city in states.cities|sort(attribute='name') %}
-                <LI>{{ city.id }}: <B>{{ city.name }}</B></LI>
-        {% endfor %}
-        </UL>
-        {% endif %}
-    </BODY>
-</HTML>
+  2 <HTML lang="en">
+  3     <HEAD>
+  4         <TITLE>HBNB</TITLE>
+  5     </HEAD>
+  6     <BODY>
+  7         {% if not state_id %}
+  8             <H1>States</H1>
+  9         <UL>
+ 10             {% for state in states.values()|sort(attribute='name') %}
+ 11             <LI>{{ state.id }}: <B>{{ state.name }}</B></LI>
+ 12         {% endfor %}
+ 13         </UL>
+ 14     {% elif state_id in states%}
+ 15         {% set state = states[state_id] %}
+ 16             <H1>State: {{ state.name }}</H1>
+ 17         <H3>Cities</H3>
+ 18             <UL>
+ 19             {% for city in state.cities|sort(attribute='name') %}
+ 20                             <LI>{{ city.id }}: <B>{{ city.name }}</B></LI>
+ 21                         {% endfor %}
+ 22             </UL>
+ 23     {% else %}
+ 24         <H1>Not found!</H1>
+ 25     {% endif %}
+ 26     </BODY>
+ 27 </HTML>
